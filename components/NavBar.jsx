@@ -1,11 +1,17 @@
 import React from 'react'
-import { NavBarContainer } from './Style'
+import { NavBarContainer, BgDiv } from './Style'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Logo from '../src/assets/img/logo-selftrained.png'
 
 const NavBar = () => {
     const [isNavbarWhite, setIsNavbarWhite] = useState(false);
+
+    const [menuActive, setMenuActive] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuActive(!menuActive);
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,18 +29,24 @@ const NavBar = () => {
 
     return (
         <header>
-            <NavBarContainer isNavbarWhite={isNavbarWhite} className={isNavbarWhite ? 'white-background' : ''}>
+            <NavBarContainer isNavbarWhite={isNavbarWhite} menuActive={menuActive} className={isNavbarWhite ? 'white-background' : ''}>
+                <BgDiv className={`initial ${menuActive ? 'active' : ''}`}></BgDiv>
                 <div className='img-logo'>
                     <Link to={"/"}>
                         <img src={Logo} alt="logo" />
                     </Link>
                 </div>
-                <div className='menu-items'>
+                <div className={`menu-items ${menuActive ? 'menu-active' : ''}`}>
                     <ul>
-                        <Link to={"/"}><li>ABOUT</li></Link>
-                        <Link to={"/"}><li>PROGRAMS</li></Link>
-                        <Link to={"/"}><li>CONTACT</li></Link>
+                        <Link to={"/"}><li className='li-1'>ABOUT</li></Link>
+                        <Link to={"/"}><li className='li-2'>PROGRAMS</li></Link>
+                        <Link to={"/"}><li className='li-3'>CONTACT</li></Link>
                     </ul>
+                </div>
+                <div className={`menu-icon ${menuActive ? 'menu-active' : ''}`} onClick={toggleMenu}>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </NavBarContainer>
         </header>

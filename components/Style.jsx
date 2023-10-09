@@ -1,4 +1,14 @@
-import styled from "styled-components"
+import { styled, keyframes } from 'styled-components';
+
+const slideInFromRight = keyframes`
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+`;
+
 
 export const NavBarContainer = styled.div`
     background-color: ${({ isNavbarWhite }) => (isNavbarWhite ? 'white' : 'transparent')};
@@ -10,32 +20,97 @@ export const NavBarContainer = styled.div`
     z-index: 1000;
     margin-top: ${({ isNavbarWhite }) => (isNavbarWhite ? '-50px' : '0px')};
     letter-spacing: 2px;
-    font-size: ${({ isNavbarWhite }) => (isNavbarWhite ? '0.8rem' : '1.2rem')};
+    font-size: ${({ isNavbarWhite, menuActive }) => (isNavbarWhite && !menuActive ? '0.8rem' : '1.2rem')};
     transition: background-color 0.3s ease;
     height: 50px;
     .img-logo{
         display: flex;
         align-items: center;
+        z-index: 100;
         img{
             height: ${({ isNavbarWhite }) => (isNavbarWhite ? '40px' : '70px')};
             width: fit-content;
-            filter: ${({ isNavbarWhite }) => (isNavbarWhite ? 'none' : 'brightness(0) invert(1)')};
+            filter: ${({ isNavbarWhite, menuActive }) => (isNavbarWhite && !menuActive ? 'none' : 'brightness(0) invert(1)')};
         }
     }
-    .menu-items{
-        ul{
+    .menu-items {
+        transition: ${({menuActive}) => (!menuActive ? 'all .6s ease' : 'none')};
+        ul {
             display: flex;
-            li{
-                list-style: none;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            li {
                 padding-inline: 10px;
-                color: white;
-                font-weight: 500;
-                color: ${({ isNavbarWhite }) => (isNavbarWhite ? 'black' : 'white')};   
+                margin: 10px 0;
+                color: ${({ isNavbarWhite, menuActive }) => (isNavbarWhite && !menuActive ? 'black' : 'white')};
+                font-weight: ${({ isNavbarWhite, menuActive }) => (
+                (isNavbarWhite && menuActive) ? '500' : '500')};
+                animation: ${slideInFromRight} 0.6s ease forwards;
             }
-            a{
+            a {
                 text-decoration: none;
             }
         }
+    }
+    .menu-icon {
+        display: none;
+        z-index: 100;
+        div {
+            width: 25px;
+            height: 3px;
+            background-color: ${({ isNavbarWhite, menuActive }) => (
+                (isNavbarWhite && !menuActive) ? '#54749a' : 'white'
+            )};
+            margin: 5px;
+            transition: transform 0.3s;
+        }
+        div:first-child {
+            transform: ${({ menuActive }) => (menuActive ? 'rotate(-45deg) translate(-5px, 6px)' : 'none')};
+        }
+        div:nth-child(2) {
+            opacity: ${({ menuActive }) => (menuActive ? '0' : '1')};
+        }
+        div:last-child {
+            transform: ${({ menuActive }) => (menuActive ? 'rotate(45deg) translate(-5px, -6px)' : 'none')};
+        }
+    }
+    @media (max-width: 768px) {
+        .menu-icon {
+            display: block;
+            cursor: pointer;
+        }
+        .menu-items {
+            display: block;
+            z-index: 100;
+            position:absolute;
+            margin-left:auto;
+            margin-right:auto;
+            top:200px;
+            left: 0;
+            right:0;
+            text-align:center;
+            ul {
+                display: ${({ menuActive }) => (menuActive ? 'block' : 'none')};   
+            }
+        }
+    }
+`
+
+export const BgDiv = styled.div`
+    position:absolute;
+    background-color:#54749a;
+    opacity: 95%;
+    width:100%;
+    top:-2000px;
+    left:-2000px;
+    height:100%;
+    transition: all .6s ease;
+    &.active{
+        top:-50px;
+        left:0;
+        width:100%;
+        height: 100vh;
     }
 `
 
@@ -48,6 +123,7 @@ export const HomeContainer = styled.div`
             height: 500px;
         }
         img {
+            height: 700px;
             margin-top: -50px;
             width: 100%;
             object-fit: cover;
