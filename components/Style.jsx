@@ -36,7 +36,7 @@ export const NavBarContainer = styled.div`
             width: fit-content;
             filter: ${({ isNavbarWhite, menuActive }) => (isNavbarWhite && !menuActive ? 'none' : 'brightness(0) invert(1)')};
             @media (max-width: 768px) {
-                width: 50px;
+                width: auto;
             }
         }
     }
