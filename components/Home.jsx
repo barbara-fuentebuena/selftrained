@@ -80,31 +80,24 @@ const Home = () => {
                 </div>
             </div>
             <div className='consultation-container'>
-            <div className='consultation-form'>
+                <div className='consultation-form'>
                     <form action="submit">
-                        <input 
-                        type="text"placeholder='Your name' required/>
-                        <input type="email"placeholder='Your email' required/>
-                        <input 
-                        className='text-input-area'
-                        type="text" placeholder='Enter your message' />
-                    <button type='submit'>BOOK NOW
-                    <i className="material-icons">arrow_right_alt</i>
-                    </button>
+                        <input
+                            type="text" placeholder='Your name' required />
+                        <input type="email" placeholder='Your email' required />
+                        <input
+                            className='text-input-area'
+                            type="text" placeholder='Enter your message' />
+                        <button type='submit'>BOOK NOW
+                            <i className="material-icons">arrow_right_alt</i>
+                        </button>
                     </form>
                 </div>
                 <div className='consultation-text'>
                     <h4>free</h4>
                     <h2>get a</h2>
-                    <h3>consultation call</h3> 
+                    <h3>consultation call</h3>
                 </div>
-                
-            </div>
-            <div>
-                carrusel de reviews
-            </div>
-            <div>
-                footer con redes sociales
             </div>
         </HomeContainer >
     )

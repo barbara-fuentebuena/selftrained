@@ -221,6 +221,7 @@ export const HomeContainer = styled.div`
             display: block;
             margin: auto;
             padding: 50px;
+            margin-left: 30px;
             text-align: center;
             letter-spacing: .5px;
             font-weight: lighter;
@@ -228,6 +229,7 @@ export const HomeContainer = styled.div`
                 width: 100%;
                 padding: 0;
                 padding-top: 20px;
+                margin-left: 0px;
             }
             h2{
                 text-align: end;
@@ -390,7 +392,7 @@ export const HomeContainer = styled.div`
             border-radius: 0px 200px 0px 0px;
             width: 80%;
             background-color: #54749a;
-            margin: -50px auto -50px auto ;
+            margin: -50px auto auto auto ;
             @media(max-width:768px){
                 display: flex;
                 flex-direction: column-reverse;
@@ -400,6 +402,7 @@ export const HomeContainer = styled.div`
             .consultation-text{
                 width: 50%;
                 text-align: center;
+                margin-top: -40px;
                 @media(max-width:768px){
                     margin-top: 20px;
                     margin-bottom: 20px;
@@ -455,7 +458,7 @@ export const HomeContainer = styled.div`
                     justify-content: center;
                     align-items: center;
                     @media(max-width:768px){
-                         padding: 0px;
+                        padding: 0px;
                     }
                     input{
                         width: 80%;
@@ -482,7 +485,7 @@ export const HomeContainer = styled.div`
                 align-items: center;
                 justify-content: center;
                 &:hover{
-                    background-color:
+                    background-color: #54749a;
                     color: white;
                     font-weight: bold;
                     }
@@ -494,4 +497,25 @@ export const HomeContainer = styled.div`
             }             
         }
     }
+`  
+export const FooterContainer = styled.div`
+    margin: 30px; 
+    opacity: 80%;
+    .social-icons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a{
+            font-size: 1.5rem;
+            padding: 10px;
+            color: #54749a;
+        }
+    }
+    h5{
+        text-align: center;
+        color: #54749a;
+        margin-top: 0;
+        font-weight: 400;
+    }
+    
 `
